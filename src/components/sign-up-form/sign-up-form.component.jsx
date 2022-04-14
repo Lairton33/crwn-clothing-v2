@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils" 
+import { 
+    createUserDocumentFromAuth,
+    createAuthUserWithEmailAndPassword
+} from "../../utils/firebase/firebase.utils" ;
+
+import FormInput from "../../components/form-input/form-input.component"
 
 const defaultFormFields = {
     email: "",
     password: "",
     displayName: "",
     confirmPassword: ""
-}
+};
 
 const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
@@ -46,12 +51,11 @@ const SignUpForm = () => {
         // similar to Obj = formFields; Obj[name] = value;
         setFormFields({...formFields, [name]: value});
     }
-    console.log(formFields)
     return (
         <div>
             <form method="POST" onSubmit={handleSubmit}>
-                <label>Display Name</label>
-                <input
+                <FormInput
+                    label="Display Name"
                     required
                     type="text"
                     name="displayName"
@@ -59,8 +63,8 @@ const SignUpForm = () => {
                     value={displayName}
                 />
                 
-                <label>Email</label>
-                <input
+                <FormInput
+                    label="Email"
                     required
                     type="email"
                     name="email"
@@ -68,8 +72,8 @@ const SignUpForm = () => {
                     value={email}
                 />
 
-                <label>Password</label>
-                <input 
+                <FormInput
+                    label="Password"
                     required
                     type="password"
                     name="password"
@@ -77,8 +81,8 @@ const SignUpForm = () => {
                     value={password}
                 />
 
-                <label>Confirm Password</label>
-                <input 
+                <FormInput
+                    label="Confirm Password" 
                     required
                     type="password"
                     name="confirmPassword"
